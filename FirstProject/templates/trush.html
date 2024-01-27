@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="insert_form" style="border: 1px solid black; padding: 30px; margin-top: 30px; border-radius: 5px;">
+  
+<table class="table table-dark table-striped">
+    <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Employee Name</th>
+          <th scope="col">Employee Email</th>
+          <th scope="col">Employee Picture</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {%for i in insert_data_show %}
+        <tr>
+          <form action="{% url 'delete_all' %}" method="POST">
+            {% csrf_token %}
+          <th scope="row"><input type="checkbox" value="{{ i.id }}" name="del_emp"> {{ i.id }}</th>
+          <td>{{ i.emp_name }}</td>
+          <td>{{ i.emp_email }}</td>
+          <td>
+            <img src="/media/{{ i.emp_pic }}" alt="Bangladesh" style="width: 100px; height: 100px">
+          </td>
+          <td>
+            <a href="{% url 'restore' i.id %}" class="btn btn-success">Restore</a> ||
+            <a href="#" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-trash-can"></i></a>
+            {% comment %} {% url 'emp_trush_del' i.id %} {% endcomment %}
+          </td>
+        </tr>
+                  <!-- Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  Do you want permanent delete?
+                </div>
+                <div class="modal-footer">
+                  <a href="{% url 'emp_trush_del' i.id %}" class="btn btn-success">Yes</a>
+                      <a href="{% url 'trush' %}" class="btn btn-danger">NO</i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+            <button type="submit" class="btn btn-danger">Delete All</button>
+          </form>
+      </tbody>
+</table>
+</div>
+
+
+
+{% load sweetify %}
+{% sweetify %}
+{% endblock %}

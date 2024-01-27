@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="home_page">This is Store Data Show Up by table</h1>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Student Name</th>
+        <th scope="col">Student Roll</th>
+        <th scope="col">Student Class</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for i in std_info %}
+      <tr>
+        <th scope="row">{{i.id}}</th>
+        <td>{{i.std_name}}</td>
+        <td>{{i.std_roll}}</td>
+        <td>{{i.std_class}}</td>
+      </tr>
+       {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}

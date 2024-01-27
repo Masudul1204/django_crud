@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="insert_form" style="border: 1px solid black; padding: 30px; margin-top: 30px; border-radius: 5px;">
+  {% for i in emp_info %}
+<form action="{% url 'emp_update' i.id %}" method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+    <div class="mb-3">
+      <label for="exampleInputNAME" class="form-label">Employee Name</label>
+      <input type="text" class="form-control" name="emp_name" value="{{ i.emp_name }}" id="exampleInputNAME" aria-describedby="nameHelp">
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Employee Email</label>
+      <input type="email" class="form-control" name="emp_email" value="{{ i.emp_email }}" id="exampleInputEmail1" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPIC" class="form-label">Employee Picture</label>
+      <input type="file" class="form-control" name="emp_pic" id="exampleInputPIC" aria-describedby="picHelp">
+      <img src="/media/{{ i.emp_pic }}" alt="Bangladesh" style="width: 100px; height: 100px">
+      <input type="text" name="emp_pic_1" value="{{ i.emp_pic }}" hidden>
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+  </form>
+  {% endfor %}
+</div> 
+{% endblock %}

@@ -1,0 +1,19 @@
+.home_page{
+    color: red;
+    font-size: 66;
+    font-family: 'Times New Roman', Times, serif;
+}
+.about_text{
+    color: green;
+    font-size: 26;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+.about_img{
+    width: 200px;
+    height: auto;
+}
+.insert_form{
+    border: 1px solid black;
+    padding: 30px;
+}

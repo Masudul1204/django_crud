@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="home_page">This is Store Page</h1>   
+
+<form method="POST" action="{% url 'store' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit">Save</button>
+</form>
+{% endblock %}
